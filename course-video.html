@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб-разработка с нуля - LearnHub</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .comment-timestamp {
+            background: rgba(79, 70, 229, 0.1);
+            border-left: 4px solid #4F46E5;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .comment-timestamp:hover {
+            background: rgba(79, 70, 229, 0.2);
+        }
+        .progress-bar {
+            height: 4px;
+            background: #e5e7eb;
+            position: relative;
+        }
+        .progress-fill {
+            position: absolute;
+            height: 100%;
+            background: #4F46E5;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i data-feather="book-open" class="h-8 w-8 text-primary"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-900">LearnHub</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="courses.html" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Курсы</a>
+                    <a href="my-courses.html" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Мои курсы</a>
+                    <a href="create-course.html" class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90">Создать курс</a>
+                    <a href="profile.html" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                        <i data-feather="user" class="h-5 w-5"></i>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button type="button" class="mobile-menu-button">
+                        <i data-feather="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Сайдбар с уроками -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-lg shadow-md p-6 sticky top-24">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Содержание курса</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between p-3 bg-primary/10 rounded-lg">
+                                <span class="text-sm font-medium text-primary">1. Введение в HTML</span>
+                                <i data-feather="check-circle" class="h-4 w-4 text-green-500"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-100 rounded-lg">
+                                <span class="text-sm font-medium text-gray-700">2. Основы CSS</span>
+                                <i data-feather="play-circle" class="h-4 w-4 text-primary"></i>
+                            </div>
+                            <div class="flex items-center p-3 rounded-lg">
+                                <span class="text-sm font-medium text-gray-500">3. JavaScript основы</span>
+                            </div>
+                            <!-- Добавьте больше уроков -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Основной контент -->
+                <div class="lg:col-span-3">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <!-- Видеоплеер -->
+                        <div class="video-container">
+                            <video id="course-video" controls>
+                                <source src="#" type="video/mp4">
+                                Ваш браузер не поддерживает видео.
+                            </video>
+                        </div>
+
+                        <!-- Информация о уроке -->
+                        <div class="p-6">
+                            <h1 class="text-2xl font-bold text-gray-900 mb-4">Введение в HTML</h1>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-sm text-gray-600">Урок 1 из 12</span>
+                                    <span class="text-sm text-gray-600">25 минут</span>
+                                </div>
+                                <button id="add-timestamp" class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 flex items-center">
+                                    <i data-feather="plus" class="h-4 w-4 mr-2"></i>
+                                    Добавить метку
+                                </button>
+                            </div>
+
+                            <!-- Прогресс -->
+                            <div class="mb-6">
+                                <div class="progress-bar rounded-full">
+                                    <div class="progress-fill rounded-full" style="width: 25%"></div>
+                                </div>
+                                <div class="flex justify-between text-sm text-gray-600 mt-2">
+                                    <span>25% завершено</span>
+                                    <span>6:15 / 25:00</span>
+                                </div>
+                            </div>
+
+                            <!-- Описание -->
+                            <div class="prose max-w-none mb-8">
+                                <p>В этом уроке мы изучим основы HTML - языка разметки, который является фундаментом веб-разработки.</p>
+                            </div>
+
+                            <!-- Комментарии с временными метками -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Комментарии</h3>
+                                <div class="space-y-4">
+                                    <div class="comment-timestamp p-4 rounded-lg" data-timestamp="125">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <span class="text-sm font-medium text-primary">2:05</span>
+                                            <button class="copy-link text-gray-400 hover:text-primary">
+                                                <i data-feather="link" class="h-4 w-4"></i>
+                                            </button>
+                                        </div>
+                                        <p class="text-gray-700">Важное замечание: всегда используйте семантические теги для лучшей доступности.</p>
+                                        <div class="flex items-center text-sm text-gray-500 mt-2">
+                                            <span>Иван Петров</span>
+                                            <span class="mx-2">•</span>
+                                            <span>2 часа назад</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-timestamp p-4 rounded-lg" data-timestamp="305">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <span class="text-sm font-medium text-primary">5:05</span>
+                                            <button class="copy-link text-gray-400 hover:text-primary">
+                                                <i data-feather="link" class="h-4 w-4"></i>
+                                            </button>
+                                        </div>
+                                        <p class="text-gray-700">Здесь показан хороший пример использования div и span элементов.</p>
+                                        <div class="flex items-center text-sm text-gray-500 mt-2">
+                                            <span>Мария Сидорова</span>
+                                            <span class="mx-2">•</span>
+                                            <span>5 часов назад</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Форма добавления комментария -->
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="text-sm font-semibold text-gray-900 mb-3">Добавить комментарий</h4>
+                                <textarea 
+                                    placeholder="Ваш комментарий..." 
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                    rows="3"
+                                ></textarea>
+                                <div class="flex items-center justify-between mt-3">
+                                    <span class="text-sm text-gray-500">Текущее время: <span id="current-time">0:00</span></span>
+                                    <button class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90">
+                                        Добавить комментарий
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">LearnHub</h4>
+                    <p class="text-gray-400">Платформа для качественного онлайн-обучения</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Курсы</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Все курсы</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Видеокурсы</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Текстовые курсы</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Поддержка</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Помощь</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Контакты</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Социальные сети</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 LearnHub. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        feather.replace();
+
+        // Управление видео и временными метками
+        const video = document.getElementById('course-video');
+        const currentTimeElement = document.getElementById('current-time');
+        const addTimestampBtn = document.getElementById('add-timestamp');
+
+        video.addEventListener('timeupdate', function() {
+            const minutes = Math.floor(video.currentTime / 60);
+            const seconds = Math.floor(video.currentTime % 60);
+            currentTimeElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        });
+
+        // Переход к временной метке
+        document.querySelectorAll('.comment-timestamp').forEach(comment => {
+            comment.addEventListener('click', function() {
+                const timestamp = parseInt(this.getAttribute('data-timestamp'));
+                video.currentTime = timestamp;
+                video.play();
+            });
+        });
+
+        // Копирование ссылки на метку
+        document.querySelectorAll('.copy-link').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const timestamp = this.closest('.comment-timestamp').getAttribute('data-timestamp');
+                const url = `${window.location.href.split('?')[0]}?t=${timestamp}`;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Ссылка скопирована в буфер обмена!');
+                });
+            });
+        });
+
+        // Добавление новой метки
+        addTimestampBtn.addEventListener('click', function() {
+            const timestamp = Math.floor(video.currentTime);
+            const comment = prompt('Введите ваш комментарий:');
+            if (comment) {
+                // Здесь будет код для добавления комментария в базу данных
+                alert(`Метка добавлена на ${Math.floor(timestamp/60)}:${timestamp%60}`);
+            }
+        });
+    </script>
+</body>
+</html>

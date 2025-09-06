@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все курсы - LearnHub</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .course-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .filter-btn.active {
+            background-color: #4F46E5;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i data-feather="book-open" class="h-8 w-8 text-primary"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-900">LearnHub</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="courses.html" class="text-primary px-3 py-2 rounded-md text-sm font-medium">Курсы</a>
+                    <a href="my-courses.html" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Мои курсы</a>
+                    <a href="create-course.html" class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90">Создать курс</a>
+                    <a href="profile.html" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                        <i data-feather="user" class="h-5 w-5"></i>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button type="button" class="mobile-menu-button">
+                        <i data-feather="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок -->
+    <div class="pt-24 pb-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-aos="fade-up">
+                Все курсы
+            </h1>
+            <p class="text-gray-600 max-w-2xl" data-aos="fade-up" data-aos-delay="100">
+                Выберите подходящий курс из нашей обширной коллекции
+            </p>
+        </div>
+    </div>
+
+    <!-- Фильтры -->
+    <div class="bg-gray-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap gap-4" data-aos="fade-up">
+                <button class="filter-btn active px-4 py-2 rounded-full bg-primary text-white text-sm font-medium">
+                    Все курсы
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full bg-white text-gray-700 border border-gray-300 text-sm font-medium">
+                    <i data-feather="video" class="h-4 w-4 inline mr-1"></i> Видео
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full bg-white text-gray-700 border border-gray-300 text-sm font-medium">
+                    <i data-feather="file-text" class="h-4 w-4 inline mr-1"></i> Текст
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full bg-white text-gray-700 border border-gray-300 text-sm font-medium">
+                    <i data-feather="award" class="h-4 w-4 inline mr-1"></i> Бесплатные
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Сетка курсов -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Пример курсов -->
+                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up">
+                    <div class="h-48 bg-gradient-to-r from-blue-400 to-purple-500 relative">
+                        <div class="absolute top-4 left-4 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm">
+                            <i data-feather="video" class="h-4 w-4 inline mr-1"></i> Видео
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">React для начинающих</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Изучите основы React и создайте свое первое приложение</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">Бесплатно</span>
+                            <a href="course-video.html" class="text-primary hover:text-primary/80 font-medium">
+                                Начать →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-r from-green-400 to-blue-500 relative">
+                        <div class="absolute top-4 left-4 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm">
+                            <i data-feather="file-text" class="h-4 w-4 inline mr-1"></i> Текст
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Python продвинутый</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Продвинутые техники программирования на Python</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">₽3,990</span>
+                            <a href="course-text.html" class="text-primary hover:text-primary/80 font-medium">
+                                Начать →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Добавьте больше курсов здесь -->
+            </div>
+
+            <!-- Пагинация -->
+            <div class="flex justify-center mt-12" data-aos="fade-up">
+                <nav class="flex items-center space-x-2">
+                    <button class="px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
+                        <i data-feather="chevron-left" class="h-4 w-4"></i>
+                    </button>
+                    <button class="px-3 py-2 rounded-md bg-primary text-white">1</button>
+                    <button class="px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
+                    <button class="px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
+                    <button class="px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
+                        <i data-feather="chevron-right" class="h-4 w-4"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">LearnHub</h4>
+                    <p class="text-gray-400">Платформа для качественного онлайн-обучения</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Курсы</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Все курсы</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Видеокурсы</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Текстовые курсы</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Поддержка</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Помощь</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Контакты</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Социальные сети</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 LearnHub. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        feather.replace();
+
+        // Фильтрация курсов
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

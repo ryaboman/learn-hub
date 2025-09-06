@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основы дизайна - LearnHub</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .progress-bar {
+            height: 4px;
+            background: #e5e7eb;
+            position: relative;
+        }
+        .progress-fill {
+            position: absolute;
+            height: 100%;
+            background: #4F46E5;
+            transition: width 0.3s ease;
+        }
+        .test-question {
+            border-left: 4px solid #4F46E5;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i data-feather="book-open" class="h-8 w-8 text-primary"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-900">LearnHub</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="courses.html" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Курсы</a>
+                    <a href="my-courses.html" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Мои курсы</a>
+                    <a href="create-course.html" class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90">Создать курс</a>
+                    <a href="profile.html" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                        <i data-feather="user" class="h-5 w-5"></i>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button type="button" class="mobile-menu-button">
+                        <i data-feather="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Сайдбар с уроками -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-lg shadow-md p-6 sticky top-24">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Содержание курса</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between p-3 bg-primary/10 rounded-lg">
+                                <span class="text-sm font-medium text-primary">1. Принципы дизайна</span>
+                                <i data-feather="check-circle" class="h-4 w-4 text-green-500"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-100 rounded-lg">
+                                <span class="text-sm font-medium text-gray-700">2. Цветовая теория</span>
+                                <i data-feather="play-circle" class="h-4 w-4 text-primary"></i>
+                            </div>
+                            <div class="flex items-center p-3 rounded-lg">
+                                <span class="text-sm font-medium text-gray-500">3. Типографика</span>
+                            </div>
+                            <!-- Добавьте больше уроков -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Основной контент -->
+                <div class="lg:col-span-3">
+                    <div class="bg-white rounded-lg shadow-md p-8">
+                        <h1 class="text-3xl font-bold text-gray-900 mb-6">Принципы дизайна</h1>
+                        
+                        <!-- Прогресс -->
+                        <div class="mb-8">
+                            <div class="progress-bar rounded-full">
+                                <div class="progress-fill rounded-full" style="width: 33%"></div>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-600 mt-2">
+                                <span>33% завершено</span>
+                                <span>Глава 1 из 3</span>
+                            </div>
+                        </div>
+
+                        <!-- Текстовый контент -->
+                        <div class="prose max-w-none mb-8">
+                            <h2>Введение</h2>
+                            <p>Дизайн - это не просто украшение, а способ решения проблем и улучшения пользовательского опыта. В этой главе мы рассмотрим основные принципы, которые лежат в основе хорошего дизайна.</p>
+                            
+                            <h2>Баланс</h2>
+                            <p>Баланс создает стабильность и структуру в дизайне. Существует три типа баланса:</p>
+                            <ul>
+                                <li><strong>Симметричный баланс</strong> - элементы распределены равномерно</li>
+                                <li><strong>Асимметричный баланс</strong> - разные элементы создают визуальное равновесие</li>
+                                <li><strong>Радиальный баланс</strong> - элементы расходятся из центра</li>
+                            </ul>
+
+                            <h2>Контраст</h2>
+                            <p>Контраст помогает выделить важные элементы и создать визуальный интерес. Используйте контраст в:</p>
+                            <ul>
+                                <li>Цвете</li>
+                                <li>Размере</li>
+                                <li>Форме</li>
+                                <li>Текстуре</li>
+                            </ul>
+                        </div>
+
+                        <!-- Тест -->
+                        <div class="bg-gray-50 p-6 rounded-lg mb-8">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Проверка знаний</h3>
+                            
+                            <div class="test-question bg-white p-4 rounded-lg mb-4">
+                                <p class="font-medium mb-3">1. Что такое симметричный баланс?</p>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="question1" class="mr-2">
+                                        <span>Элементы распределены неравномерно</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="question1" class="mr-2">
+                                        <span>Элементы расходятся из центра</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="question1" class="mr-2">
+                                        <span>Элементы распределены равномерно</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="test-question bg-white p-4 rounded-lg mb-4">
+                                <p class="font-medium mb-3">2. Для чего используется контраст в дизайне?</p>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="question2" class="mr-2">
+                                        <span>Для создания монотонности</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="question2" class="mr-2">
+                                        <span>Для выделения важных элементов</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="question2" class="mr-2">
+                                        <span>Для уменьшения читаемости</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button class="bg-primary text-white px-6 py-2 rounded-md font-medium hover:bg-primary/90">
+                                Проверить ответы
+                            </button>
+                        </div>
+
+                        <!-- Комментарии к тесту -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Обсуждение теста</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-700 mb-2">В первом вопросе важно понимать разницу между типами баланса. Симметричный баланс действительно предполагает равномерное распределение элементов.</p>
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <span>Анна Иванова</span>
+                                        <span class="mx-2">•</span>
+                                        <span>3 часа назад</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <p class="text-gray-700 mb-2">Во втором вопросе контраст действительно используется для выделения важных элементов и создания визуального интереса.</p>
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <span>Петр Сергеев</span>
+                                        <span class="mx-2">•</span>
+                                        <span>1 час назад</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Форма добавления комментария -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Добавить комментарий к тесту</h4>
+                            <textarea 
+                                placeholder="Ваш комментарий или вопрос..." 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                rows="4"
+                            ></textarea>
+                            <button class="bg-primary text-white px-6 py-2 rounded-md font-medium hover:bg-primary/90 mt-4">
+                                Отправить комментарий
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">LearnHub</h4>
+                    <p class="text-gray-400">Платформа для качественного онлайн-обучения</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Курсы</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Все курсы</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Видеокурсы</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Текстовые курсы</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Поддержка</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Помощь</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Контакты</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Социальные сети</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 LearnHub. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        feather.replace();
+    </script>
+</body>
+</html>
